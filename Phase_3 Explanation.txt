@@ -1,0 +1,40 @@
+ 0x00005555555551dd <+0>:     sub    $0x18,%rsp                        //Subtract 24 from stack pointer
+   0x00005555555551e1 <+4>:     lea    0x8(%rsp),%rcx                  //get the location on the stack that is 8 bytes away from the stack pointer %rsp and set %rcx to that value
+   0x00005555555551e6 <+9>:     lea    0xc(%rsp),%rdx                  //get the location on the stack that is 12 bytes away from the stack pointer %rsp and set %rdx to that value
+   0x00005555555551eb <+14>:    lea    0x17f1(%rip),%rsi        # 0x5555555569e3
+   0x00005555555551f2 <+21>:    mov    $0x0,%eax                       //Sets rax to 0x0
+   0x00005555555551f7 <+26>:    callq  0x555555554e60 <__isoc99_sscanf@plt>
+   0x00005555555551fc <+31>:    cmp    $0x1,%eax                       //checks if more than 1 number has been entered. Sets %rsp +8 to second entered value.
+   0x00005555555551ff <+34>:    jle    0x55555555521c <phase_3+63>
+   0x0000555555555201 <+36>:    cmpl   $0x7,0xc(%rsp)                  //sees if the first number is less than 7 or 8. If not, explode bomb
+   0x0000555555555206 <+41>:    ja     0x555555555254 <phase_3+119>
+=> 0x0000555555555208 <+43>:    mov    0xc(%rsp),%eax                  //Sets input rax value to rsp + 12 which is -96+12 or -84
+   0x000055555555520c <+47>:    lea    0x15ad(%rip),%rdx        # 0x5555555567c0       //sets rdx to -96
+   0x0000555555555213 <+54>:    movslq (%rdx,%rax,4),%rax              // sets rax to the input *4 +rdx
+   0x0000555555555217 <+58>:    add    %rdx,%rax                       // adds rdx to rax and stores it at rax. This then turns into an address that jumpq jumps to
+   0x000055555555521a <+61>:    jmpq   *%rax                           // so if $rax = 0x55555555524d, then it jumps to +112, which then sets eax to $0x1d7
+   0x000055555555521c <+63>:    callq  0x5555555557ad <explode_bomb>
+   0x0000555555555221 <+68>:    jmp    0x555555555201 <phase_3+36>
+   0x0000555555555223 <+70>:    mov    $0x1ee,%eax
+   0x0000555555555228 <+75>:    jmp    0x555555555265 <phase_3+136>
+   0x000055555555522a <+77>:    mov    $0x6e,%eax
+   0x000055555555522f <+82>:    jmp    0x555555555265 <phase_3+136>
+   0x0000555555555231 <+84>:    mov    $0xe4,%eax
+   0x0000555555555236 <+89>:    jmp    0x555555555265 <phase_3+136>
+   0x0000555555555238 <+91>:    mov    $0x362,%eax
+   0x000055555555523d <+96>:    jmp    0x555555555265 <phase_3+136>
+   0x000055555555523f <+98>:    mov    $0x246,%eax
+   0x0000555555555244 <+103>:   jmp    0x555555555265 <phase_3+136>
+   0x0000555555555246 <+105>:   mov    $0x80,%eax
+   0x000055555555524b <+110>:   jmp    0x555555555265 <phase_3+136>
+   0x000055555555524d <+112>:   mov    $0x1d7,%eax
+   0x0000555555555252 <+117>:   jmp    0x555555555265 <phase_3+136>
+   0x0000555555555254 <+119>:   callq  0x5555555557ad <explode_bomb>
+   0x0000555555555259 <+124>:   mov    $0x0,%eax
+   0x000055555555525e <+129>:   jmp    0x555555555265 <phase_3+136>
+   0x0000555555555260 <+131>:   mov    $0x21c,%eax
+   0x0000555555555265 <+136>:   cmp    %eax,0x8(%rsp)                // Compare %eax with location on stack that is 8 bytes away from stack pointer %rsp.
+   0x0000555555555269 <+140>:   je     0x555555555270 <phase_3+147>
+   0x000055555555526b <+142>:   callq  0x5555555557ad <explode_bomb>
+   0x0000555555555270 <+147>:   add    $0x18,%rsp
+   0x0000555555555274 <+151>:   retq   
