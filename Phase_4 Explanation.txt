@@ -1,0 +1,22 @@
+   0x00005555555552a2 <+0>:     sub    $0x18,%rsp                   //Subtract 24 from stack pointer
+   0x00005555555552a6 <+4>:     lea    0x8(%rsp),%rcx               //get the location on the stack that is 8 bytes away from the stack pointer %rsp and set %rcx to that value
+   0x00005555555552ab <+9>:     lea    0xc(%rsp),%rdx               //get the location on the stack that is 12 bytes away from the stack pointer %rsp and set %rcx to that value
+   0x00005555555552b0 <+14>:    lea    0x172c(%rip),%rsi        # 0x5555555569e3
+   0x00005555555552b7 <+21>:    mov    $0x0,%eax
+   0x00005555555552bc <+26>:    callq  0x555555554e60 <__isoc99_sscanf@plt>
+   0x00005555555552c1 <+31>:    cmp    $0x2,%eax
+   0x00005555555552c4 <+34>:    jne    0x5555555552cd <phase_4+43>
+   0x00005555555552c6 <+36>:    cmpl   $0xe,0xc(%rsp)
+   0x00005555555552cb <+41>:    jbe    0x5555555552d2 <phase_4+48>
+   0x00005555555552cd <+43>:    callq  0x5555555557ad <explode_bomb>
+   0x00005555555552d2 <+48>:    mov    $0xe,%edx
+   0x00005555555552d7 <+53>:    mov    $0x0,%esi
+   0x00005555555552dc <+58>:    mov    0xc(%rsp),%edi
+   0x00005555555552e0 <+62>:    callq  0x555555555275 <func4>
+=> 0x00005555555552e5 <+67>:    cmp    $0x25,%eax                   //Checks if first value, after passing through func4, is equal to 0x25
+   0x00005555555552e8 <+70>:    jne    0x5555555552f1 <phase_4+79>
+   0x00005555555552ea <+72>:    cmpl   $0x25,0x8(%rsp)              //checks to see if second input is equal to 37 (25 in hex)
+   0x00005555555552ef <+77>:    je     0x5555555552f6 <phase_4+84>
+   0x00005555555552f1 <+79>:    callq  0x5555555557ad <explode_bomb>
+   0x00005555555552f6 <+84>:    add    $0x18,%rsp
+   0x00005555555552fa <+88>:    retq   
